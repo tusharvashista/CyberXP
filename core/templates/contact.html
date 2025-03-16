@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section class="contact-hero" style="background-image: url('{% static "images/150085c8-50d9-4ff8-9ff0-b0f7f0258c70.jpg" %}');">
+    <div class="hero-overlay">
+        <h1 class="neon-text">Contact</h1>
+        <p class="fade-in">Get in Touch</p>
+    </div>
+</section>
+
+<section class="contact-content">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <h2 class="neon-text">Connect With Us</h2>
+                <p>Have questions or want to collaborate? Send us a message or connect through our YouTube channel.</p>
+                <div class="social-connect">
+                    <a href="https://www.youtube.com/@aakarshbonigala" target="_blank" class="cyber-button youtube-btn">
+                        <i class="fab fa-youtube"></i>
+                        <span>Subscribe on YouTube</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form-container fade-in">
+                <form method="post" class="cyber-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name" class="cyber-label">Name</label>
+                        <input type="text" id="name" name="name" class="cyber-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="cyber-label">Email</label>
+                        <input type="email" id="email" name="email" class="cyber-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="cyber-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="cyber-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="cyber-label">Message</label>
+                        <textarea id="message" name="message" class="cyber-input" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cyber-button submit-btn">
+                        <span class="btn-content">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </span>
+                    </button>
+                </form>
+
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

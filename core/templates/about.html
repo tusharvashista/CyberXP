@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About CyberXP{% endblock %}
+
+{% block content %}
+<section class="about-hero" style="background-image: url('{% static "images/150085c8-50d9-4ff8-9ff0-b0f7f0258c70.jpg" %}');">
+    <div class="hero-overlay">
+        <h1 class="neon-text">About CyberXP</h1>
+    </div>
+</section>
+
+<section class="about-content">
+    <div class="container">
+        <div class="mission-statement fade-in">
+            <h2 class="neon-text">Our Mission</h2>
+            <p>CyberXP is at the forefront of the gaming revolution, pushing boundaries and creating immersive experiences that blur the line between reality and digital realms.</p>
+        </div>
+
+        <div class="timeline fade-in">
+            <h2 class="neon-text">Our Journey</h2>
+            <div class="timeline-grid">
+                <div class="timeline-item">
+                    <div class="year neon-text">2023</div>
+                    <div class="content">
+                        <h3>CyberXP Launch</h3>
+                        <p>Embarking on our digital odyssey</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year neon-text">2024</div>
+                    <div class="content">
+                        <h3>Community Growth</h3>
+                        <p>Building the future together</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year neon-text">2025</div>
+                    <div class="content">
+                        <h3>Next Generation</h3>
+                        <p>Pushing the boundaries of gaming</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-section fade-in">
+            <h2 class="neon-text">Behind the Mask</h2>
+            <div class="team-grid">
+                <div class="cyber-card">
+                    <img src="{% static 'images/Aakarsh Bonigala.jpg' %}" alt="Aakarsh Bonigala">
+                    <h3>Aakarsh Bonigala</h3>
+                    <p class="social-handle">@aakarshbonigala</p>
+                    <p>Leading the digital revolution in gaming content</p>
+                    <a href="https://www.youtube.com/@aakarshbonigala" target="_blank" class="cyber-button">
+                        <i class="fab fa-youtube"></i> Subscribe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

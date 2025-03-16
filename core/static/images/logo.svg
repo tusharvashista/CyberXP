@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .logo-text { font-family: 'Orbitron', sans-serif; fill: #00BFFF; }
+        .glow { filter: url(#blue-glow); }
+    </style>
+    <defs>
+        <filter id="blue-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0   0 0.75 1 0 0   1 0 0 0 0  0 0 0 1 0" />
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g class="glow">
+        <text x="50%" y="50%" text-anchor="middle" class="logo-text" dominant-baseline="middle" font-size="120">CXP</text>
+    </g>
+</svg>

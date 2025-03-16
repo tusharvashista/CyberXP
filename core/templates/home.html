@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to the Future{% endblock %}
+
+{% block content %}
+<section class="hero container">
+    <div class="hero-content">
+        <h1 class="neon-text">CyberXP</h1>
+        <p class="fade-in">Enter the Cyber Realm of Gaming</p>
+        <a href="#featured" class="cyber-button">Game On</a>
+    </div>
+</section>
+
+<section id="featured" class="featured-section container">
+    <div class="container">
+        <h2 class="section-title neon-text">Latest Videos</h2>
+        <div class="youtube-feed">
+            <div class="youtube-embed">
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed?listType=user_uploads&list=UCASDW_4wpvtifSkN0NehPBw" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="subscribe-section">
+                <h3 class="neon-text">Subscribe to Our Channel</h3>
+                <p>Stay updated with our latest gaming content</p>
+                <a href="https://www.youtube.com/channel/UCASDW_4wpvtifSkN0NehPBw" target="_blank" class="cyber-button">
+                    <i class="fab fa-youtube"></i> Subscribe Now
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Ensure iframe maintains 16:9 aspect ratio
+    function resizeYoutubeEmbed() {
+        const embed = document.querySelector('.youtube-embed');
+        if (embed) {
+            const width = embed.offsetWidth;
+            embed.style.height = (width * 9 / 16) + 'px';
+        }
+    }
+
+    resizeYoutubeEmbed();
+    window.addEventListener('resize', resizeYoutubeEmbed);
+});
+</script>
+{% endblock %}

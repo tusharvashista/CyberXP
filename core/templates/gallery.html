@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Video Gallery{% endblock %}
+
+{% block content %}
+<section class="gallery-hero" style="background-image: url('{% static "images/3b58964f-374b-452e-a49d-d34762fd789b.jpg" %}');">
+    <div class="container">
+        <div class="hero-overlay">
+            <h1 class="neon-text">Video Gallery</h1>
+            <p class="fade-in">Experience Our Gaming Journey</p>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-content">
+    <div class="container">
+        <div class="search-section fade-in">
+            <form method="GET" class="search-form" id="searchForm">
+                <div class="search-input-group">
+                    <input type="text" 
+                           name="q" 
+                           value="{{ search_query }}" 
+                           placeholder="Search videos..." 
+                           class="cyber-input"
+                           id="searchInput">
+                    <button type="submit" class="cyber-button">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {% if error %}
+        <div class="error-message fade-in">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        <div class="video-grid">
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed?listType=user_uploads&list=UU_aakarshbonigala&enablejsapi=1" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    id="videoPlayer">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="subscribe-banner fade-in">
+            <h2 class="neon-text">Never Miss a Video</h2>
+            <p>Subscribe to stay updated with our latest gaming content</p>
+            <a href="https://www.youtube.com/@aakarshbonigala" target="_blank" class="cyber-button">
+                <i class="fab fa-youtube"></i> Subscribe Now
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load YouTube IFrame API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Initialize player variable
+    var player;
+
+    // Create YouTube player when API is ready
+    window.onYouTubeIframeAPIReady = function() {
+        player = new YT.Player('videoPlayer', {
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+    };
+
+    function onPlayerReady(event) {
+        // Player is ready
+        console.log('Player is ready');
+    }
+
+    // Handle search
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = searchForm.querySelector('button');
+
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        searchButton.classList.add('loading');
+
+        // Get the search query
+        const query = searchInput.value.trim();
+        
+        if (query) {
+            // Update URL with search parameter
+            const url = new URL(window.location);
+            url.searchParams.set('q', query);
+            window.history.pushState({}, '', url);
+
+            // You can implement custom search functionality here
+            // For now, we'll just reload the page with the search parameter
+            window.location.reload();
+        }
+    });
+
+    // Ensure 16:9 aspect ratio for video containers
+    function resizeVideoContainers() {
+        const containers = document.querySelectorAll('.video-container');
+        containers.forEach(container => {
+            const width = container.offsetWidth;
+            container.style.height = (width * 9 / 16) + 'px';
+        });
+    }
+
+    resizeVideoContainers();
+    window.addEventListener('resize', resizeVideoContainers);
+});
+</script>
+{% endblock %}
